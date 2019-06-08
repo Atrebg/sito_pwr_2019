@@ -1,0 +1,263 @@
+body {
+    background: url(img/prism.png);
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-rows: 50px auto auto;
+}
+
+.topnav {
+    grid-row: 1/1;
+    background-color: #333;
+    overflow: hidden;
+}
+
+.topnav img {
+    float: left;
+    width: auto;
+    height: 50px;
+    margin-left: 5vw;
+    margin-right: 5vw;
+}
+
+.topnav a {
+    float: left;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 17px 2vw;
+    overflow: hidden;
+    text-decoration: none;
+    font-size: 17px;
+}
+
+.topnav span {
+    float: left;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 17px 2vw;
+    overflow: hidden;
+    text-decoration: none;
+    font-size: 17px;
+}
+
+.topnav a:hover {
+    background-color: #ddd;
+    color: black;
+}
+
+.topnav a.active {
+    background-color: orange;
+    color: white;
+}
+
+.usermenu {
+    grid-row: 2;
+    height: 20px;
+    text-align: right;
+    margin-right: 10vw;
+    margin-top: 10px;
+    color: white;
+    font-weight: bold;
+    font-size: 80%;
+}
+
+.content {
+    grid-row: 3;
+    display: grid;
+    grid-template-columns: 20vw auto 20vw;
+}
+
+.content div.login {
+    grid-column: 2;
+    margin-top: 7vh;
+    color: white;
+    background: #333;
+    padding: 20px;
+    border-radius: 5px;
+}
+
+.login input[type=text] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.login input[type=submit],
+input[type=reset] {
+    width: 45%;
+    background-color: orange;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 2.5%;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    float: left;
+}
+
+.login input[type=submit]:hover {
+    background-color: rgb(255, 184, 52);
+}
+
+.login span.error {
+    font-size: 80%;
+    float: right;
+}
+
+.footer {
+    position: fixed;
+    bottom: 0px;
+    left: 0;
+    height: 20px;
+    width: 100%;
+    background-color: orange;
+}
+
+.footer div.destra {
+    float: right;
+    font-weight: bolder;
+    margin-right: 2vw;
+}
+
+.footer div.sinistra {
+    float: left;
+    margin-left: 2vw;
+}
+
+.homecontent {
+    box-sizing: border-box;
+    margin-top: 10px;
+}
+
+.homecontent .slideshow-container {
+    width: 90vw;
+    max-width: 1000px;
+    position: relative;
+    margin: auto;
+}
+
+.homecontent .slide {
+    display: none;
+}
+
+.homecontent .prev,
+.homecontent .next {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    width: auto;
+    margin-top: -22px;
+    padding: 16px;
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+    transition: 0.6s ease;
+    border-radius: 0 3px 3px 0;
+    user-select: none;
+}
+
+.homecontent .next {
+    right: 0;
+    border-radius: 3px 0 0 3px;
+}
+
+.homecontent .prev:hover,
+.homecontent .next:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+.homecontent .text {
+    color: #f2f2f2;
+    font-size: 15px;
+    padding: 8px 12px;
+    position: absolute;
+    bottom: 8px;
+    width: 100%;
+    text-align: center;
+    text-shadow: 2px 2px #333;
+}
+
+.homecontent .numeroslide {
+    color: #f2f2f2;
+    font-size: 12px;
+    padding: 8px 12px;
+    position: absolute;
+    top: 0;
+}
+
+.homecontent .dot {
+    cursor: pointer;
+    height: 15px;
+    width: 15px;
+    margin: 0 2px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+    transition: background-color 0.6s ease;
+}
+
+.homecontent .active,
+.homecontent .dot:hover {
+    background-color: #717171;
+}
+
+.homecontent .fade {
+    -webkit-animation-name: fade;
+    -webkit-animation-duration: 1.5s;
+    animation-name: fade;
+    animation-duration: 1.5s;
+}
+
+@-webkit-keyframes fade {
+    from {
+        opacity: .4
+    }
+
+    to {
+        opacity: 1
+    }
+}
+
+@keyframes fade {
+    from {
+        opacity: .4
+    }
+
+    to {
+        opacity: 1
+    }
+}
+
+.homecontent .info {
+    display: grid;
+    grid-template-columns: 10vw auto auto 10vw;
+}
+
+.homecontent .elenco {
+    grid-column: 2;
+    background-color: #333;
+    border-radius: 5px;
+    color: white;
+    padding: 10px 10px;
+    box-shadow: -2px 2px rgb(37, 37, 37);
+}
+
+.homecontent .testo {
+    grid-column: 3;
+    background-color: #333;
+    border-radius: 5px;
+    color: white;
+    padding: 10px 10px;
+    box-shadow: -2px 2px rgb(37, 37, 37);
+}
+
+.homecontent span {
+    font-weight: bolder;
+}
