@@ -35,7 +35,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             if ($_POST["password"] === $_POST["password2"]) {
                 $password = true;
             } else {
-                $passworderr = "Le due password non coincidono";
+                $passworderr = "Le due password non coincidono.";
             }
         }
     }
@@ -44,9 +44,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $password = mysqli_real_escape_string($dbw, $_POST["password"]);
         $name = mysqli_real_escape_string($dbw, $_POST["name"]);
 
-        $sql = "INSERT INTO users (username, pwd) VALUES ('$name', '$password')";
-        mysqli_query($dbw, $sql);
-        $utentecreato = true;
+        $sql = "SELECT username FROM users WHERE username=$name";
+        $usernameresult = mysqli_query($dbw, $sql);
+        if (mysqli_num_rows($usernameresult) > 0) {
+            $nameerr = "Utente già presente nel sistema.";
+        } else {
+            $sql = "INSERT INTO users (username, pwd) VALUES ('$name', '$password')";
+            mysqli_query($dbw, $sql);
+            $utentecreato = true;
+        }
     }
 }
 
@@ -84,8 +90,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box;" name="password2" placeholder="Ripeti la password.."><span class="error">
                         <?php echo $passworderr; ?>
                     </span><br><br>
-                    <input type="submit">
-                    <input type="reset">
+                    <input type="submit" value="REGISTRAMI">
+                    <input type="reset" value="PULISCI">
                     <br>
                     <?php if ($utentecreato === true) {
                         echo "Utente " . $name . " creato con successo.";

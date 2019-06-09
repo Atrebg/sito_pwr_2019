@@ -20,6 +20,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (mysqli_num_rows($resultlibri) > 0) {
         while ($row = mysqli_fetch_assoc($resultlibri)) {
             if (!empty($_POST["" . $row["id"]])) {
+                $durataprestito = round((time() - strtotime($row["data"])) / 60 / 60 / 24);
                 $sql = "UPDATE books
                 SET prestito = '', DATA = 0, giorni=0
                 WHERE id=" . $row['id'] . ";";
@@ -51,8 +52,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     ANONIMO! Attualmente hai 0 libri in prestito.</div>' ?>
 
         <div class="centrato">
-            Libri restituiti con successo.
-            <br>
+            Libri restituiti con successo dopo <?php echo $durataprestito ?> giorni.
+            <br><br>
             <form>
                 <a class="continua" href="libri.php">Continua</a>
             </form>

@@ -41,7 +41,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $count = mysqli_num_rows($result);
 
     if ($count == 1) {
+        $cookie_name = "last_login";
         $_SESSION["login_user"] = $name;
+        setcookie($cookie_name, $name, time() + (86400 * 2), "/");
         header("location: libri.php");
     } else {
         $error = "Il tuo username o la tua password non sono validi.";
@@ -69,15 +71,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <div class="content">
             <div class="login">
                 <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
-                    Username: <input type="text" name="name" placeholder="Inserisci il tuo username.."><span class="error">
+                    Username: <input type="text" name="name" placeholder="Inserisci il tuo username.." value="<?php
+                                                                                                                if (isset($_COOKIE["last_login"])) {
+                                                                                                                    echo $_COOKIE["last_login"];
+                                                                                                                }
+                                                                                                                ?>"><span class="error">
                         <?php echo $nameerr; ?>
                     </span><br><br>
                     Password: <input type="password" style="width: 100%; padding: 12px 20px; margin: 8px 0; display: inline-block;
     border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box;" name="password" placeholder="Inserisci la tua password.."><span class="error">
                         <?php echo $passworderr; ?>
                     </span><br><br>
-                    <input type="submit">
-                    <input type="reset">
+                    <input type="submit" value="OK">
+                    <input type="reset" value="PULISCI">
                     <?php echo $error; ?>
                 </form>
 
