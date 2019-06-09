@@ -1,4 +1,4 @@
-<?php session_start(); ?>
+<?php include("session.php"); ?>
 <!DOCTYPE html>
 <html lang="it">
 
@@ -12,7 +12,6 @@
 </head>
 
 <?php
-include("config.php");
 $name = $password = $password2 = false;
 $nameerr = $passworderr = "";
 $utentecreato = false;
@@ -66,10 +65,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             else echo '<span>Logout</span>'; ?>
         </div>
         <?php if (!empty($_SESSION["login_user"])) echo '<div class="usermenu">Benvenuto 
-    ' . $_SESSION["login_user"] . '! Attualmente hai 0 libri in prestito.</div>';
+    ' . $_SESSION["login_user"] . '! Attualmente hai ' . $numlibri . ' libri in prestito.</div>';
         else echo
             '<div class="usermenu">Benvenuto 
-    ANONIMO! Attualmente hai ' . $numlibri . ' libri in prestito.</div>' ?>
+    ANONIMO! Attualmente hai 0 libri in prestito.</div>' ?>
 
         <div class="content">
             <div class="login">
@@ -77,10 +76,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     Username: <input type="text" name="name" placeholder="Inserisci uno username.."><span class="error">
                         <?php echo $nameerr; ?>
                     </span><br><br>
-                    Password: <input type="text" name="password" placeholder="Inserisci una password.."><span class="error">
+                    Password: <input type="password" style="width: 100%; padding: 12px 20px; margin: 8px 0; display: inline-block;
+    border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box;" name="password" placeholder="Inserisci una password.."><span class="error">
                         <?php echo $passworderr; ?>
                     </span><br><br>
-                    Ripeti la Password: <input type="text" name="password2" placeholder="Ripeti la password.."><span class="error">
+                    Ripeti la Password: <input type="password" style="width: 100%; padding: 12px 20px; margin: 8px 0; display: inline-block;
+    border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box;" name="password2" placeholder="Ripeti la password.."><span class="error">
                         <?php echo $passworderr; ?>
                     </span><br><br>
                     <input type="submit">

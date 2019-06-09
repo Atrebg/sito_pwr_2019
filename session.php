@@ -10,4 +10,6 @@ if (!empty($_SESSION["login_user"])) {
     $result = mysqli_query($dbr, $sql);
 
     $numlibri = mysqli_num_rows($result);
+} else {
+    $numlibri = 0;
 }

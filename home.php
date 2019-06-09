@@ -68,6 +68,7 @@
             <li>Macchina foto</li>
             <li>Pc con connessione internet</li>
             <li>Servizio consultazione tesi</li>
+          </ul>
         </div>
         <div class="testo"><span>Info sulla biblioteca:</span><br><br>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem voluptatum pariatur qui magnam possimus minima, expedita iure sequi consequuntur veniam omnis delectus unde, at harum quis, vitae aut? Fugit, nam?
           <br>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque a soluta itaque in sint, facilis incidunt esse recusandae asperiores consequuntur distinctio, quibusdam dicta doloribus obcaecati dignissimos fugiat, nulla ab maiores!

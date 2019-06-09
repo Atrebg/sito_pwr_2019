@@ -7,7 +7,7 @@
     <meta charset="utf-8">
     <title>Login</title>
     <link rel="shortcut icon" type="image/png" href="img/favicon.png" />
-    <meta name="description" content="Login alla Bibilioteca Politecnica">
+    <meta name="Login" content="Login alla Bibilioteca Politecnica">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="stylesheet.css">
 </head>
@@ -37,7 +37,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $sql = "SELECT username, pwd FROM users WHERE username='$name' AND pwd='$password'";
     $result = mysqli_query($dbr, $sql);
     $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
-    //$active = $row['active'];
 
     $count = mysqli_num_rows($result);
 
@@ -73,7 +72,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     Username: <input type="text" name="name" placeholder="Inserisci il tuo username.."><span class="error">
                         <?php echo $nameerr; ?>
                     </span><br><br>
-                    Password: <input type="text" name="password" placeholder="Inserisci la tua password.."><span class="error">
+                    Password: <input type="password" style="width: 100%; padding: 12px 20px; margin: 8px 0; display: inline-block;
+    border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box;" name="password" placeholder="Inserisci la tua password.."><span class="error">
                         <?php echo $passworderr; ?>
                     </span><br><br>
                     <input type="submit">
