@@ -13,7 +13,7 @@
 
 <?php
 if (empty($_SESSION["login_user"])) {
-  header("Location: login.php");
+  header("Location: reindirizza.php");
 }
 
 $error = "";
@@ -79,42 +79,43 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && !empty($_POST["checkbox"])) {
             } ?>
           </table>
         </form>
-        <div class="tabella">
-          <span class="titolo">Elenco libri</span>
-          <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
-            <table>
-              <tr>
-                <th>Autore</th>
-                <th>Titolo</th>
-                <th>Prestito</th>
-              </tr>
-              <?php
-              $sql = "SELECT * FROM books";
-              $resultlibri = mysqli_query($dbr, $sql);
-              if (mysqli_num_rows($resultlibri) > 0) {
-                while ($row = mysqli_fetch_assoc($resultlibri)) {
-                  echo "<tr><td>" . $row["autori"] . "</td><td>" . $row["titolo"] . "</td>";
-                  if ($row["prestito"] == $_SESSION["login_user"]) {
-                    if (time() - strtotime($row["data"]) > $row["giorni"] * 60 * 60 * 24)
-                      echo "<td style='text-align: center'>PRESTITO SCADUTO</td>";
-                    else {
-                      echo "<td style='text-align: center'>IN PRESTITO</td>";
-                    }
-                  } else if (!empty($row["prestito"])) {
-                    echo "<td style='text-align: center'>NON DISPONIBILE</td>";
-                  } else {
-                    echo "<td style='text-align: center'><input type='checkbox' name='checkbox[]' value='" . $row["id"] . "'></input></td>";
-                  }
-                  echo "</tr>";
-                }
-              } ?>
-            </table>
-            <span class="info"><?php echo $error; ?></span>
-            <input class="numgiorni" type="text" name="numgiorni" placeholder="Inserisci per quanti giorni">
-            <input class="prestito" type="submit" value="PRESTITO">
-          </form>
-        </div>
       </div>
+      <div class="tabella">
+        <span class="titolo">Elenco libri</span>
+        <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
+          <table>
+            <tr>
+              <th>Autore</th>
+              <th>Titolo</th>
+              <th>Prestito</th>
+            </tr>
+            <?php
+            $sql = "SELECT * FROM books";
+            $resultlibri = mysqli_query($dbr, $sql);
+            if (mysqli_num_rows($resultlibri) > 0) {
+              while ($row = mysqli_fetch_assoc($resultlibri)) {
+                echo "<tr><td>" . $row["autori"] . "</td><td>" . $row["titolo"] . "</td>";
+                if ($row["prestito"] == $_SESSION["login_user"]) {
+                  if (time() - strtotime($row["data"]) > $row["giorni"] * 60 * 60 * 24)
+                    echo "<td style='text-align: center'>PRESTITO SCADUTO</td>";
+                  else {
+                    echo "<td style='text-align: center'>IN PRESTITO</td>";
+                  }
+                } else if (!empty($row["prestito"])) {
+                  echo "<td style='text-align: center'>NON DISPONIBILE</td>";
+                } else {
+                  echo "<td style='text-align: center'><input type='checkbox' name='checkbox[]' value='" . $row["id"] . "'></input></td>";
+                }
+                echo "</tr>";
+              }
+            } ?>
+          </table>
+          <span class="info"><?php echo $error; ?></span>
+          <input class="numgiorni" type="text" name="numgiorni" placeholder="Inserisci per quanti giorni">
+          <input class="prestito" type="submit" value="PRESTITO">
+        </form>
+      </div>
+    </div>
     </div>
 
     <div class="footer">

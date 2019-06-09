@@ -16,26 +16,33 @@ $name = $password = $password2 = false;
 $nameerr = $passworderr = "";
 $utentecreato = false;
 
+// VARIE REGEX
+// USERNAME: solo LETTERE/NUMERI o %, deve iniziare con 
+// % o LETTERA, lungo minimo 6 caratteri con almeno un numero ed una non lettera
+$username_regex = "/^[a-zA-Z%]{1}[a-zA-Z0-9%]{5,}$/";
+// PASSWORD: solo caratteri ALFABETICI tra 4 ed 8 caratteri con almeno una MAIUSCOLA ed una MINUSCOLA
+$password_regex = "/^(?=.*[a-z])(?=.*[A-Z]).{4,8}/";
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (empty($_POST["name"])) {
         $nameerr = "Devi inserire uno username!";
     } else {
-        if (preg_match("/^[a-zA-Z1-9]*$/", $_POST["name"])) {
+        if (preg_match($username_regex, $_POST["name"])) {
             $name = true;
         } else {
-            $nameerr = "Lo username deve essere composto solo di lettere e numeri.";
+            $nameerr = "Lo username non rispetta i parametri.";
         }
     }
-    if (empty($_POST["password"])) { //MANCA IL REGEXP SULLA PASSWORD E SULLO USERNAME
+    if (empty($_POST["password"])) {
         $passworderr = "Devi inserire una password!";
     } else {
         if (empty($_POST["password2"])) {
             $passworderr = "Devi ripetere la password!";
         } else {
-            if ($_POST["password"] === $_POST["password2"]) {
+            if ($_POST["password"] === $_POST["password2"] && preg_match($password_regex, $_POST["password"])) {
                 $password = true;
             } else {
-                $passworderr = "Le due password non coincidono.";
+                $passworderr = "Le due password non coincidono o la password non rispetta i parametri.";
             }
         }
     }

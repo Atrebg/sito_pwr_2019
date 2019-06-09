@@ -1,3 +1,4 @@
+<?php include("session.php") ?>
 <!DOCTYPE html>
 <html lang="it">
 
@@ -10,28 +11,6 @@
     <link rel="stylesheet" href="stylesheet.css">
 </head>
 
-<?php
-include("session.php");
-
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-
-    $sql = "SELECT * FROM books";
-    $resultlibri = mysqli_query($dbr, $sql);
-    if (mysqli_num_rows($resultlibri) > 0) {
-        while ($row = mysqli_fetch_assoc($resultlibri)) {
-            if (!empty($_POST["" . $row["id"]])) {
-                $durataprestito = round((time() - strtotime($row["data"])) / 60 / 60 / 24);
-                $sql = "UPDATE books
-                SET prestito = '', DATA = 0, giorni=0
-                WHERE id=" . $row['id'] . ";";
-                mysqli_query($dbw, $sql);
-            }
-        }
-    }
-}
-
-?>
-
 <body>
     <main class="grid-container">
 
@@ -39,7 +18,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <div class="topnav">
                 <img src="img/logo.png" alt="LOGO.PNG" />
                 <a href="home.php">Home</a>
-                <a href="libri.php">Libri</a>
+                <a class="active" href="libri.php">Libri</a>
                 <a href="new.php">Registrazione</a>
                 <?php if (empty($_SESSION["login_user"])) echo '<a href="login.php">Login</a>';
                 else echo '<span>Login</span>'; ?>
@@ -54,10 +33,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     ANONIMO! Attualmente hai 0 libri in prestito.</div>' ?>
 
         <div class="centrato">
-            Libri restituiti con successo dopo <?php echo $durataprestito ?> giorni.
+            Per accedere alla sezione Libri è necessario il Login.
             <br><br>
             <form>
-                <a class="continua" href="libri.php">Continua</a>
+                <a class="continua" href="login.php">Continua</a>
             </form>
         </div>
 
