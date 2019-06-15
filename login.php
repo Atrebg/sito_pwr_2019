@@ -23,30 +23,32 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (empty($_POST["name"])) {
         $nameerr = "Devi inserire uno username!";
     } else {
-        $name == true;
+        $name = true;
     }
     if (empty($_POST["password"])) {
         $passworderr = "Devi inserire una password!";
     } else {
-        $password == true;
+        $password = true;
     }
 
-    $password = mysqli_real_escape_string($dbw, $_POST["password"]);
-    $name = mysqli_real_escape_string($dbr, $_POST["name"]);
+    if ($password == true && $name == true) {
+        $password = mysqli_real_escape_string($dbw, $_POST["password"]);
+        $name = mysqli_real_escape_string($dbr, $_POST["name"]);
 
-    $sql = "SELECT username, pwd FROM users WHERE username='$name' AND pwd='$password'";
-    $result = mysqli_query($dbr, $sql);
-    $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
+        $sql = "SELECT username, pwd FROM users WHERE username='$name' AND pwd='$password'";
+        $result = mysqli_query($dbr, $sql);
+        $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
 
-    $count = mysqli_num_rows($result);
+        $count = mysqli_num_rows($result);
 
-    if ($count == 1) {
-        $cookie_name = "last_login";
-        $_SESSION["login_user"] = $name;
-        setcookie($cookie_name, $name, time() + (86400 * 2), "/");
-        header("location: libri.php");
-    } else {
-        $error = "Il tuo username o la tua password non sono validi.";
+        if ($count == 1) {
+            $cookie_name = "last_login";
+            $_SESSION["login_user"] = $name;
+            setcookie($cookie_name, $name, time() + (86400 * 2), "/");
+            header("location: libri.php");
+        } else {
+            $error = "Il tuo username o la tua password non sono validi.";
+        }
     }
 }
 

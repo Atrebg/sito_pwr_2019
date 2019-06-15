@@ -53,6 +53,26 @@ body {
     color: white;
 }
 
+@media screen and (max-width: 600px) {
+
+    .topnav a,
+    .topnav img,
+    .topnav span,
+    .topnav a.active {
+        float: none;
+        display: block;
+        padding: 10px;
+    }
+
+    .topnav {
+        overflow: auto;
+    }
+
+    .grid-container {
+        grid-template-rows: auto auto auto;
+    }
+}
+
 .usermenu {
     grid-row: 2;
     height: 20px;

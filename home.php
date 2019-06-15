@@ -68,14 +68,19 @@
             <li>Macchina foto</li>
             <li>Pc con connessione internet</li>
             <li>Servizio consultazione tesi</li>
+            <li>Attività di formazione e istruzione degli utenti</li>
+            <li>Reference bibliotecario</li>
           </ul>
         </div>
-        <div class="testo"><span>Info sulla biblioteca:</span><br><br>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem voluptatum pariatur qui magnam possimus minima, expedita iure sequi consequuntur veniam omnis delectus unde, at harum quis, vitae aut? Fugit, nam?
-          <br>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque a soluta itaque in sint, facilis incidunt esse recusandae asperiores consequuntur distinctio, quibusdam dicta doloribus obcaecati dignissimos fugiat, nulla ab maiores!
-          <br>Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim, quia? Impedit cumque a ut temporibus nostrum dolorum aspernatur possimus molestiae? Officia doloribus recusandae illo minus soluta, explicabo consectetur voluptatem dolore.
+        <div class="testo"><span>Info sulla biblioteca:</span><br><br>
+          Le origini della Biblioteca Centrale di Ingegneria si intrecciano con quelle del Politecnico di Torino, che nasce nel 1905 dalla fusione del Regio Museo Industriale con la Scuola d'Applicazione per gli Ingegneri.<br>
+          Permangono alcuni testi provenienti dalle biblioteche di questi enti a testimoniare la vita culturale e scientifica dell'Ottocento. Dopo la fondazione del Politecnico, la Biblioteca di Ingegneria ebbe sede in via dell'Ospedale, mentre la sezione di Architettura era sistemata al Castello del Valentino. Durante l'incursione aerea dell'8 dicembre 1942 la sede in via dell'Ospedale fu completamente distrutta: dei 45.000 volumi lì conservati, fu recuperata solo una minima parte, poi temporaneamente alloggiata al Castello del Valentino.<br>
+          I danni furono stimati in 66 milioni di lire del tempo. I pochi testi rimasti costituiscono il nucleo originario dell'attuale Biblioteca, situata nell'edificio costruito negli anni '50 in corso Duca degli Abruzzi. Un'accurata politica di acquisizioni e numerosi doni hanno consentito di colmare le lacune createsi durante la guerra e di mantenere le collezioni in linea con le più recenti scoperte scientifiche.
         </div>
       </div>
     </div>
+
+    <br><br><br>
 
     <div class="footer">
       <div class="sinistra"><?php echo basename($_SERVER['PHP_SELF']); ?></div>

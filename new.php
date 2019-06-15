@@ -19,7 +19,7 @@ $utentecreato = false;
 // VARIE REGEX
 // USERNAME: solo LETTERE/NUMERI o %, deve iniziare con 
 // % o LETTERA, lungo minimo 6 caratteri con almeno un numero ed una non lettera
-$username_regex = "/^[a-zA-Z%]{1}[a-zA-Z0-9%]{5,}$/";
+$username_regex = "/(?=.*[a-zA-Z])(?=.*[0-9%])^[a-zA-Z%]{1}[a-zA-Z0-9%]{2,5}$/";
 // PASSWORD: solo caratteri ALFABETICI tra 4 ed 8 caratteri con almeno una MAIUSCOLA ed una MINUSCOLA
 $password_regex = "/^(?=.*[a-z])(?=.*[A-Z]).{4,8}/";
 
@@ -51,9 +51,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $password = mysqli_real_escape_string($dbw, $_POST["password"]);
         $name = mysqli_real_escape_string($dbw, $_POST["name"]);
 
-        $sql = "SELECT username FROM users WHERE username=$name";
+        $sql = "SELECT username, pwd FROM users WHERE username='$name'";
         $usernameresult = mysqli_query($dbw, $sql);
-        if (mysqli_num_rows($usernameresult) > 0) {
+        $count = mysqli_num_rows($usernameresult);
+        if ($count > 0) {
             $nameerr = "Utente già presente nel sistema.";
         } else {
             $sql = "INSERT INTO users (username, pwd) VALUES ('$name', '$password')";
@@ -102,7 +103,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <br>
                     <?php if ($utentecreato === true) {
                         echo "Utente " . $name . " creato con successo.";
-                    } ?>
+                    }
+                    $utentecreato = false;
+                    ?>
                 </form>
 
             </div>
